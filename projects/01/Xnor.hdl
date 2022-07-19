@@ -1,0 +1,16 @@
+/**
+ * Exclusive-nor gate:
+ * out = (a == b)
+ */
+
+CHIP Xnor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nand(a=a, b=b, out=tmp);
+    Nand(a=a, b=tmp, out=ta);
+    Nand(a=b, b=tmp, out=tb);
+    Nand(a=ta, b=tb, out=tout);
+    Nand(a=tout, b=tout, out=out);
+}
